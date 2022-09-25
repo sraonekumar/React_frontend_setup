@@ -1,19 +1,21 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./Navbar";
+import Redirect from "./Redirect";
+import SignIn from "./SignIn";
+import Dashboard from "../Pages/Dashboard";
 
 const router = [
   {
     path: "/",
-    element: <div>Home page</div>,
+    element: <Redirect />,
   },
   {
-    path: "/users",
-    element: <div>Users page</div>,
+    path: "/signin",
+    element: <SignIn />,
   },
   {
-    path: "/about",
-    element: <div>About page</div>,
+    path: "/dashboard",
+    element: <Dashboard />,
   },
   {
     path: "*",
@@ -24,7 +26,6 @@ const router = [
 function Router() {
   return (
     <BrowserRouter>
-      <Navbar />
       <Routes>
         {router.map((route) => {
           return (

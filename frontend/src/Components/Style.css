@@ -1,0 +1,90 @@
+.mainWrapper {
+  background-color: #191919;
+  height: 100vh;
+}
+
+.loginWrapper,
+.otpWrapper {
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.loginWrapper > div,
+.otpWrapper > div {
+  margin: 10px;
+  width: 70%;
+  padding: 10px;
+  text-align: center;
+}
+
+.loginWrapper a {
+  color: #fff;
+}
+
+.loginWrapper input,
+.otpWrapper input {
+  color: #fff !important;
+}
+
+.loginWrapper input[type],
+.otpWrapper input {
+  color: #fff !important;
+}
+
+.inputLabelOuterWrapper {
+  margin: 15px 0px;
+  width: auto;
+}
+
+.logoWrapper {
+  text-align: center;
+}
+
+.loginbtnWrapper {
+  background: yellow !important;
+  width: 100%;
+  color: black !important;
+  padding: 10px !important;
+  margin: 10px 0px !important;
+}
+
+.imgOuterWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 350px;
+  height: 460px;
+  border-radius: 5px;
+  margin: 10px;
+}
+.imgWarpper {
+  border-radius: 5px;
+  width: 350px;
+  height: 100%;
+}
+
+.common-icon {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px 0px;
+  margin: 10px 0px;
+}
+
+.common-icon:hover,
+.selected-item {
+  background-color: yellow;
+}
+
+.side-nav-icon {
+  color: white !important;
+}
+
+.selected-item .side-nav-icon,
+.common-icon:hover .side-nav-icon {
+  color: black !important;
+}

@@ -10,10 +10,13 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { Badge } from "@mui/material";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const details = ["EY_Super_Admin"];
 
 const ResponsiveAppBar = ({ open, handleDrawerOpen }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -32,7 +35,7 @@ const ResponsiveAppBar = ({ open, handleDrawerOpen }) => {
   };
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" style={{ background: "#fff", color: "black" }}>
       <Toolbar disableGutters>
         <IconButton
           color="inherit"
@@ -43,78 +46,12 @@ const ResponsiveAppBar = ({ open, handleDrawerOpen }) => {
         >
           <MenuIcon />
         </IconButton>
-        <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-        <Typography
-          variant="h6"
-          noWrap
-          component="a"
-          href="/"
-          sx={{
-            mr: 2,
-            display: { xs: "none", md: "flex" },
-            fontFamily: "monospace",
-            fontWeight: 700,
-            letterSpacing: ".3rem",
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
-          LOGO
-        </Typography>
+        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
 
-        <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorElNav}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
-            sx={{
-              display: { xs: "block", md: "none" },
-            }}
-          >
-            {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{page}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
-        <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-        <Typography
-          variant="h5"
-          noWrap
-          component="a"
-          href=""
-          sx={{
-            mr: 2,
-            display: { xs: "flex", md: "none" },
-            flexGrow: 1,
-            fontFamily: "monospace",
-            fontWeight: 700,
-            letterSpacing: ".3rem",
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
-          LOGO
-        </Typography>
-        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-          {pages.map((page) => (
-            <Button
-              key={page}
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              {page}
+        <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          {details.map((item) => (
+            <Button key={item} sx={{ color: "#000" }}>
+              {item}
             </Button>
           ))}
         </Box>
@@ -125,6 +62,25 @@ const ResponsiveAppBar = ({ open, handleDrawerOpen }) => {
               <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
             </IconButton>
           </Tooltip>
+          <IconButton
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <MailIcon />
+            </Badge>
+          </IconButton>
+          <IconButton
+            size="large"
+            aria-label="show 17 new notifications"
+            color="inherit"
+          >
+            <Badge badgeContent={17} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+
           <Menu
             sx={{ mt: "45px" }}
             id="menu-appbar"
