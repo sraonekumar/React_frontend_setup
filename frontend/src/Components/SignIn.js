@@ -9,6 +9,7 @@ import {
 import ey from "../assets/ey.PNG";
 import logo from "../assets/logo.svg";
 import "./Style.css";
+import { redirectToPage } from "../Utils/utils";
 
 function SignIn() {
   const [name, setName] = useState("");
@@ -18,9 +19,13 @@ function SignIn() {
   const [isOtpSent, setOtpSent] = useState(false);
   const [snackData, setSnackData] = useState({ isOpen: false, msg: "" });
 
-  const loginUser = () => {};
+  const loginUser = () => {
+    setOtpSent(true);
+  };
 
-  const verifyOTP = () => {};
+  const verifyOTP = () => {
+    redirectToPage("/dashboard");
+  };
 
   useEffect(() => {}, []);
 
@@ -87,7 +92,7 @@ function SignIn() {
                     type="password"
                   />
                 </div>
-                <Button onClick={loginUser} className="loginbtnWrapper">
+                <Button onClick={() => loginUser()} className="loginbtnWrapper">
                   login
                 </Button>
                 <Link to="/send-link">Forgot Password?</Link>
@@ -112,7 +117,7 @@ function SignIn() {
                     value={otp}
                   />
                 </div>
-                <Button onClick={verifyOTP} className="loginbtnWrapper">
+                <Button onClick={() => verifyOTP()} className="loginbtnWrapper">
                   Verify OTP
                 </Button>
               </div>
