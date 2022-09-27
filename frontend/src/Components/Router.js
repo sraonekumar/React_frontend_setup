@@ -7,7 +7,8 @@ import Dashboard from "../Pages/Dashboard";
 const router = [
   {
     path: "/",
-    element: <Redirect />,
+    element: <SignIn />,
+    //element: <Redirect />,
   },
   {
     path: "/signin",
