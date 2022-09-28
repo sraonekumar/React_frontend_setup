@@ -9,7 +9,7 @@ import {
 import ey from "../assets/ey.PNG";
 import logo from "../assets/logo.svg";
 import "./Style.css";
-import { redirectToPage } from "../Utils/utils";
+import { isValidEmail, redirectToPage } from "../Utils/utils";
 
 function SignIn() {
   const [name, setName] = useState("");
@@ -18,9 +18,41 @@ function SignIn() {
   const [otp, setOTP] = useState("");
   const [isOtpSent, setOtpSent] = useState(false);
   const [snackData, setSnackData] = useState({ isOpen: false, msg: "" });
+  const intialErrorState = {
+    name: {
+      field: "name",
+      error: false,
+    },
+    email: {
+      field: "email",
+      error: false,
+    },
+    password: {
+      field: "password",
+      error: false,
+    },
+  };
+  const [errorStatus, setErrorStatus] = useState(intialErrorState);
 
   const loginUser = () => {
-    setOtpSent(true);
+    if (!name) {
+      setSnackData({ isOpen: true, msg: "Please enter a valid User name!" });
+      setErrorStatus({ ...errorStatus, name: { error: true } });
+      return;
+    }
+    if (!password) {
+      setSnackData({ isOpen: true, msg: "Please enter a valid password!" });
+      setErrorStatus({ ...errorStatus, password: { error: true } });
+      return;
+    }
+    if (!isValidEmail(email)) {
+      setSnackData({ isOpen: true, msg: "Please enter a valid email id!" });
+      setErrorStatus({ ...errorStatus, email: { error: true } });
+      return;
+    }
+    setErrorStatus(intialErrorState);
+    console.log({ name, email, password });
+    //setOtpSent(true);
   };
 
   const verifyOTP = () => {
@@ -67,6 +99,7 @@ function SignIn() {
                     }}
                     variant="outlined"
                     value={name}
+                    errorStatus={errorStatus?.name?.error}
                   />
                 </div>
                 <div className="inputLabelOuterWrapper">
@@ -78,6 +111,7 @@ function SignIn() {
                     }}
                     variant="outlined"
                     value={email}
+                    errorStatus={errorStatus?.email?.error}
                   />
                 </div>
                 <div className="inputLabelOuterWrapper">
@@ -90,6 +124,7 @@ function SignIn() {
                     variant="outlined"
                     value={password}
                     type="password"
+                    errorStatus={errorStatus?.password?.error}
                   />
                 </div>
                 <Button onClick={() => loginUser()} className="loginbtnWrapper">
