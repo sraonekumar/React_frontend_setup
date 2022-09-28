@@ -34,10 +34,12 @@ export default function CustomTextField({
   disabled = false,
   inputProps,
   type = "text",
+  errorStatus = false,
 }) {
   const inputStyle = { height: "100px !important", width: "100%" };
   return (
     <CSSTextField
+      error={errorStatus}
       id={id}
       label={placeholder}
       onChange={action}
