@@ -36,7 +36,11 @@ export default function CustomTextField({
   type = "text",
   errorStatus = false,
 }) {
-  const inputStyle = { height: "100px !important", width: "100%" };
+  const inputStyle = {
+    height: "100px !important",
+    width: "100%",
+    margin: "15px 10px",
+  };
   return (
     <CSSTextField
       error={errorStatus}
@@ -50,6 +54,12 @@ export default function CustomTextField({
       inputProps={inputProps}
       type={type}
       required={true}
+      sx={{
+        input: {
+          color: "#fff",
+          background: "black",
+        },
+      }}
     />
   );
 }
