@@ -54,6 +54,12 @@ export default function CustomTextField({
       inputProps={inputProps}
       type={type}
       required={true}
+      sx={{
+        input: {
+          color: "#fff",
+          background: "black",
+        },
+      }}
     />
   );
 }

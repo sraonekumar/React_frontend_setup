@@ -98,7 +98,7 @@ export default function SignInSide() {
           sx={{
             backgroundImage: "url(https://source.unsplash.com/random)",
             backgroundRepeat: "no-repeat",
-            backgroundColor: "black",
+            backgroundColor: "grey",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -129,69 +129,95 @@ export default function SignInSide() {
               width="150"
               height="250"
             />
-            <Box component="form" noValidate sx={{ mt: 1 }}>
-             {
-               !isOtpSent && (<>
-                <CustomTextField
-                id="name"
-                placeholder="Name"
-                action={(e) => {
-                  setName(e.target.value);
-                }}
-                variant="outlined"
-                value={""}
-                errorStatus={errorStatus?.name?.error}
-              />
-              <CustomTextField
-                id="email"
-                placeholder="Email"
-                action={(e) => {
-                  setEmail(e.target.value);
-                }}
-                variant="outlined"
-                value={""}
-                errorStatus={errorStatus?.email?.error}
-              />
-              <CustomTextField
-                id="password"
-                placeholder="Password"
-                action={(e) => {
-                  setPassword(e.target.value);
-                }}
-                variant="outlined"
-                value={""}
-                errorStatus={errorStatus?.password?.error}
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick={() => {
-                  loginUser();
-                }}
-              >
-                Sign In
-              </Button>
-               </>)
-             }
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
+            <Box component="form" noValidate sx={{ mt: 1, p: 4 }}>
+              {!isOtpSent && (
+                <>
+                  <CustomTextField
+                    id="name"
+                    placeholder="Name"
+                    action={(e) => {
+                      setName(e.target.value);
+                    }}
+                    variant="outlined"
+                    value={name}
+                    errorStatus={errorStatus?.name?.error}
+                  />
+                  <CustomTextField
+                    id="email"
+                    placeholder="Email"
+                    action={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                    variant="outlined"
+                    value={email}
+                    errorStatus={errorStatus?.email?.error}
+                  />
+                  <CustomTextField
+                    id="password"
+                    placeholder="Password"
+                    action={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                    variant="outlined"
+                    type="password"
+                    value={password}
+                    errorStatus={errorStatus?.password?.error}
+                  />
+                  <FormControlLabel
+                    control={<Checkbox value="remember" color="primary" />}
+                    label="Remember me"
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2, color: "black", background: "yellow" }}
+                    onClick={() => {
+                      loginUser();
+                    }}
+                  >
+                    Sign In
+                  </Button>
+
+                  <Grid container>
+                    <Grid item xs>
+                      <Link href="#" variant="body2">
+                        Forgot password?
+                      </Link>
+                    </Grid>
+                    <Grid item>
+                      <Link href="#" variant="body2">
+                        {"Don't have an account? Sign Up"}
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </>
+              )}
+              {isOtpSent && (
+                <>
+                  <CustomTextField
+                    id="otp"
+                    placeholder="OTP"
+                    action={(e) => {
+                      setOTP(e.target.value);
+                    }}
+                    variant="outlined"
+                    value={otp}
+                    errorStatus={errorStatus?.otp?.error}
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2, color: "black", background: "yellow" }}
+                    onClick={() => {
+                      verifyOTP();
+                    }}
+                  >
+                    Verify OTP
+                  </Button>
+                </>
+              )}
             </Box>
           </Box>
         </Grid>
