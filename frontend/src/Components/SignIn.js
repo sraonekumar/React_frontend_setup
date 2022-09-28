@@ -31,6 +31,10 @@ function SignIn() {
       field: "password",
       error: false,
     },
+    otp: {
+      field: "otp",
+      error: false,
+    },
   };
   const [errorStatus, setErrorStatus] = useState(intialErrorState);
 
@@ -52,10 +56,16 @@ function SignIn() {
     }
     setErrorStatus(intialErrorState);
     console.log({ name, email, password });
-    //setOtpSent(true);
+    setOtpSent(true);
   };
 
   const verifyOTP = () => {
+    if (!/^\d{4}$/gm.test(otp)) {
+      setSnackData({ isOpen: true, msg: "Please enter a valid otp!" });
+      setErrorStatus({ ...errorStatus, otp: { error: true } });
+      return;
+    }
+
     redirectToPage("/dashboard");
   };
 
@@ -150,6 +160,7 @@ function SignIn() {
                     }}
                     variant="outlined"
                     value={otp}
+                    errorStatus={errorStatus?.otp?.error}
                   />
                 </div>
                 <Button onClick={() => verifyOTP()} className="loginbtnWrapper">
