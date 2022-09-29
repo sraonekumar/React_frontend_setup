@@ -19,6 +19,8 @@ import {
 } from "../common/components/ui";
 import logo from "../assets/logo.svg";
 import { isValidEmail, redirectToPage } from "../Utils/utils";
+import EYLeftBanner from "../assets/EYLeftBanner.PNG";
+import { Alert } from "@mui/material";
 
 const theme = createTheme();
 
@@ -50,22 +52,24 @@ export default function SignInSide() {
   const [errorStatus, setErrorStatus] = useState(intialErrorState);
 
   const loginUser = () => {
+    setErrorStatus({
+      ...errorStatus,
+      name: { error: !name },
+      email: { error: !isValidEmail(email) },
+      password: { error: !password },
+    });
     if (!name) {
       setSnackData({ isOpen: true, msg: "Please enter a valid User name!" });
-      setErrorStatus({ ...errorStatus, name: { error: true } });
-      return;
-    }
-    if (!password) {
-      setSnackData({ isOpen: true, msg: "Please enter a valid password!" });
-      setErrorStatus({ ...errorStatus, password: { error: true } });
       return;
     }
     if (!isValidEmail(email)) {
       setSnackData({ isOpen: true, msg: "Please enter a valid email id!" });
-      setErrorStatus({ ...errorStatus, email: { error: true } });
       return;
     }
-    setErrorStatus(intialErrorState);
+    if (!password) {
+      setSnackData({ isOpen: true, msg: "Please enter a valid password!" });
+      return;
+    }
     console.log({ name, email, password });
     setOtpSent(true);
   };
@@ -84,11 +88,7 @@ export default function SignInSide() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid
-        container
-        component="main"
-        sx={{ height: "100vh", background: "black" }}
-      >
+      <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
           item
@@ -96,9 +96,9 @@ export default function SignInSide() {
           sm={4}
           md={6}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random)",
+            backgroundImage: `url(${EYLeftBanner})`,
             backgroundRepeat: "no-repeat",
-            backgroundColor: "grey",
+            backgroundColor: "white",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -111,7 +111,7 @@ export default function SignInSide() {
           component={Paper}
           elevation={6}
           square
-          sx={{ background: "black" }}
+          sx={{ background: "#2e2e38" }}
         >
           <Box
             sx={{
@@ -126,10 +126,9 @@ export default function SignInSide() {
               src={logo}
               alt="EY Logo"
               class="responsive"
-              width="150"
-              height="250"
+              style={{ maxWidth: "100px", maxHeight: "150px" }}
             />
-            <Box component="form" noValidate sx={{ mt: 1, p: 4 }}>
+            <Box component="form" noValidate sx={{ mt: 1, pt: 1 }}>
               {!isOtpSent && (
                 <>
                   <CustomTextField
@@ -168,7 +167,7 @@ export default function SignInSide() {
                     label="Remember me"
                   />
                   <Button
-                    type="submit"
+                    type="button"
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2, color: "black", background: "yellow" }}
@@ -206,7 +205,7 @@ export default function SignInSide() {
                     errorStatus={errorStatus?.otp?.error}
                   />
                   <Button
-                    type="submit"
+                    type="button"
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2, color: "black", background: "yellow" }}
@@ -221,6 +220,14 @@ export default function SignInSide() {
             </Box>
           </Box>
         </Grid>
+        <CustomSnackbar
+          isOpen={snackData?.isOpen}
+          msg={snackData?.msg}
+          onClose={() => {
+            setSnackData({ isOpen: false, msg: "" });
+          }}
+          type="error"
+        />
       </Grid>
     </ThemeProvider>
   );

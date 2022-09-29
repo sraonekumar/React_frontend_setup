@@ -4,7 +4,6 @@ import Redirect from "./Redirect";
 import SignIn from "./SignIn";
 import Dashboard from "../Pages/Dashboard";
 import SignInSide from "./SignInSide";
-import ResponsiveSignIn from "./ResponsiveSignIn";
 
 const router = [
   {
@@ -19,10 +18,6 @@ const router = [
   {
     path: "/re-signin",
     element: <SignInSide />,
-  },
-  {
-    path: "/re-signin",
-    element: <ResponsiveSignIn />,
   },
   {
     path: "/dashboard",

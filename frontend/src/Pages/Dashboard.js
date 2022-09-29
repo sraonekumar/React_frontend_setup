@@ -78,7 +78,7 @@ function Dashboard() {
       <AppBar
         position="fixed"
         open={open}
-        style={{ background: "#fff", color: "black" }}
+        style={{ background: "#fff", color: "black", boxShadow: "none" }}
       >
         <ResponsiveAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
       </AppBar>
@@ -114,8 +114,8 @@ function Dashboard() {
         {/* </DrawerHeader> */}
         <SideNav />
       </Drawer>
-      <Main open={open} className="main-content">
-        <DrawerHeader />
+      <Main open={open} className="main-content" sx={{ padding: "20px 0px" }}>
+        <div style={{ minHeight: "45px" }}></div>
         <TabBar />
       </Main>
     </Box>

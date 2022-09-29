@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Badge } from "@mui/material";
+import { Logout } from "@mui/icons-material";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -62,15 +63,7 @@ const ResponsiveAppBar = ({ open, handleDrawerOpen }) => {
               <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
             </IconButton>
           </Tooltip>
-          <IconButton
-            size="large"
-            aria-label="show 4 new mails"
-            color="inherit"
-          >
-            <Badge badgeContent={4} color="error">
-              <MailIcon />
-            </Badge>
-          </IconButton>
+
           <IconButton
             size="large"
             aria-label="show 17 new notifications"
@@ -80,7 +73,13 @@ const ResponsiveAppBar = ({ open, handleDrawerOpen }) => {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-
+          <IconButton
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Logout />
+          </IconButton>
           <Menu
             sx={{ mt: "45px" }}
             id="menu-appbar"
