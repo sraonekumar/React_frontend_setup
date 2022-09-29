@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Redirect from "./Redirect";
 import SignIn from "./SignIn";
 import Dashboard from "../Pages/Dashboard";
+import ResponsiveSignIn from "./ResponsiveSignIn";
 
 const router = [
   {
@@ -12,6 +13,10 @@ const router = [
   {
     path: "/signin",
     element: <SignIn />,
+  },
+  {
+    path: "/re-signin",
+    element: <ResponsiveSignIn />,
   },
   {
     path: "/dashboard",

@@ -10,6 +10,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ResponsiveAppBar from "../Components/Header";
 import SideNav from "../Components/SideNav";
 import { Avatar } from "@mui/material";
+import TabBar from "../Components/TabBar";
 import logo from "../assets/logo.png";
 
 const drawerWidth = 100;
@@ -111,7 +112,7 @@ function Dashboard() {
       </Drawer>
       <Main open={open} className="main-content">
         <DrawerHeader />
-        {/* <Navbar /> */}
+        <TabBar />
       </Main>
     </Box>
   );
