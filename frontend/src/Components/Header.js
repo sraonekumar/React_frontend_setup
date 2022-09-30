@@ -19,7 +19,7 @@ const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const details = ["EY_Super_Admin"];
 
-const ResponsiveAppBar = ({ open, handleDrawerOpen }) => {
+const ResponsiveAppBar = ({ open, handleDrawerOpen, selectedTab = "" }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -36,75 +36,73 @@ const ResponsiveAppBar = ({ open, handleDrawerOpen }) => {
   };
 
   return (
-    <Container maxWidth="xl" style={{ background: "#fff", color: "black" }}>
-      <Toolbar disableGutters>
+    // <Container maxWidth="xl" style={{ background: "#fff", color: "black" }}>
+    <Toolbar disableGutters>
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        onClick={() => handleDrawerOpen(!open)}
+        edge="start"
+        sx={{ mr: 2, ...(open && { display: "none" }) }}
+      >
+        <MenuIcon />
+      </IconButton>
+      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+        <Typography>{selectedTab}</Typography>
+      </Box>
+
+      <Box sx={{ display: { xs: "none", sm: "block" } }}>
+        {details.map((item) => (
+          <Button key={item} sx={{ color: "#000" }}>
+            {item}
+          </Button>
+        ))}
+      </Box>
+
+      <Box sx={{ flexGrow: 0 }}>
+        <Tooltip title="Open settings">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          </IconButton>
+        </Tooltip>
+
         <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
           color="inherit"
-          aria-label="open drawer"
-          onClick={() => handleDrawerOpen(!open)}
-          edge="start"
-          sx={{ mr: 2, ...(open && { display: "none" }) }}
         >
-          <MenuIcon />
+          <Badge badgeContent={17} color="error">
+            <NotificationsIcon />
+          </Badge>
         </IconButton>
-        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
-
-        <Box sx={{ display: { xs: "none", sm: "block" } }}>
-          {details.map((item) => (
-            <Button key={item} sx={{ color: "#000" }}>
-              {item}
-            </Button>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Logout />
+        </IconButton>
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
+        >
+          {settings.map((setting) => (
+            <MenuItem key={setting} onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">{setting}</Typography>
+            </MenuItem>
           ))}
-        </Box>
-
-        <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-            </IconButton>
-          </Tooltip>
-
-          <IconButton
-            size="large"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          >
-            <Badge badgeContent={17} color="error">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <IconButton
-            size="large"
-            aria-label="show 4 new mails"
-            color="inherit"
-          >
-            <Logout />
-          </IconButton>
-          <Menu
-            sx={{ mt: "45px" }}
-            id="menu-appbar"
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
-          >
-            {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
-      </Toolbar>
-    </Container>
+        </Menu>
+      </Box>
+    </Toolbar>
+    // </Container>
   );
 };
 export default ResponsiveAppBar;

@@ -5,9 +5,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
-import { List, ListItem, Tooltip } from "@mui/material";
+import { List, ListItem, Tooltip, Paper } from "@mui/material";
+import logo from "../assets/logo.svg";
 
-function SideNav() {
+function SideNav({ handleDrawerClose }) {
   const [selected, setSelected] = React.useState("");
   const dynamicMenus = [
     {
@@ -34,6 +35,14 @@ function SideNav() {
   return (
     <>
       <nav aria-label="side navigation">
+        <div onClick={() => false && handleDrawerClose()}>
+          <img
+            src={logo}
+            width={50}
+            height={60}
+            style={{ margin: "10px 15px" }}
+          />
+        </div>
         <List>
           {dynamicMenus?.map((item) => {
             return (

@@ -4,14 +4,26 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ResponsiveAppBar from "../Components/Header";
-import SideNav from "../Components/SideNav";
-import { Avatar } from "@mui/material";
-import TabBar from "../Components/TabBar";
-import logo from "../assets/logo.png";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import ResponsiveAppBar from "./Header";
+import { Avatar, Container, Paper } from "@mui/material";
+import TabBar from "./TabBar";
+import logo from "../assets/logo.svg";
+import SideNav from "./SideNav";
+import tabs from "../Json/tabs.json";
 
 const drawerWidth = 100;
 
@@ -60,9 +72,10 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-function Dashboard() {
+export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [allTabs, setAllTabs] = React.useState(tabs?.data);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -80,7 +93,11 @@ function Dashboard() {
         open={open}
         style={{ background: "#fff", color: "black", boxShadow: "none" }}
       >
-        <ResponsiveAppBar open={open} handleDrawerOpen={handleDrawerOpen} />
+        <ResponsiveAppBar
+          open={open}
+          handleDrawerOpen={handleDrawerOpen}
+          selectedTab={""}
+        />
       </AppBar>
       <Drawer
         sx={{
@@ -97,29 +114,17 @@ function Dashboard() {
         anchor="left"
         open={open}
       >
-        {/* <DrawerHeader> */}
-        {/* <IconButton onClick={handleDrawerClose} style={{ display: "none" }}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton> */}
-        <Avatar
-          variant="square"
-          style={{ width: "100%", height: "60px", background: "darkslategrey" }}
-        >
-          <img src={logo} alt="logo" />
-        </Avatar>
-        {/* </DrawerHeader> */}
-        <SideNav />
+        <SideNav handleDrawerClose={handleDrawerClose} />
       </Drawer>
-      <Main open={open} className="main-content" sx={{ padding: "20px 0px" }}>
+      <Main open={open} sx={{ padding: "20px 0px" }}>
         <div style={{ minHeight: "45px" }}></div>
-        <TabBar />
+        <Typography paragraph style={{ margin: "0px" }}>
+          <TabBar tabs={allTabs} />
+        </Typography>
+        <Box
+          sx={{ bgcolor: "#d3d5d7bd", minHeight: "480px", margin: "5px" }}
+        ></Box>
       </Main>
     </Box>
   );
 }
-
-export default Dashboard;

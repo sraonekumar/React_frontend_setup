@@ -1,6 +1,6 @@
 import * as React from "react";
-import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import Tabs, { tabsClasses } from "@mui/material/Tabs";
 import Box from "@mui/material/Box";
 
 const data = [
@@ -21,42 +21,6 @@ const data = [
     selected: "false",
   },
   {
-    title: "Sub-Industry",
-    selected: "false",
-  },
-  {
-    title: "Company",
-    selected: "false",
-  },
-  {
-    title: "Entity",
-    selected: "false",
-  },
-  {
-    title: "Plant",
-    selected: "false",
-  },
-  {
-    title: "KPI's",
-    selected: "false",
-  },
-  {
-    title: "Categories",
-    selected: "false",
-  },
-  {
-    title: "Unit",
-    selected: "false",
-  },
-  {
-    title: "Unit Group",
-    selected: "false",
-  },
-  {
-    title: "Reference Library",
-    selected: "false",
-  },
-  {
     title: "Agencies",
     selected: "false",
   },
@@ -66,7 +30,7 @@ const data = [
   },
 ];
 
-export default function TabBar() {
+export default function TabBar({ tabs = [] }) {
   const [value, setValue] = React.useState(0);
 
   const styles = {
@@ -74,7 +38,7 @@ export default function TabBar() {
       color: "darkslategrey",
       fontWeight: "800",
       fontSize: "11px",
-      padding: "0px 5px",
+      padding: "0px 0px",
     },
   };
 
@@ -85,7 +49,6 @@ export default function TabBar() {
   return (
     <Box
       sx={{
-        maxWidth: { xs: 320, sm: 480, md: 1250, xs: 1300 },
         backgroundColor: "#f5f5f5b0",
         boxShadow: "0px 0px 2px 0px #a1a1a157",
       }}
@@ -94,12 +57,16 @@ export default function TabBar() {
         value={value}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons
-        allowScrollButtonsMobile
-        aria-label="scrollable force tabs example"
+        sx={{
+          width: "1260px",
+          [`& .${tabsClasses.scrollButtons}`]: {
+            "&.Mui-disabled": { opacity: 0.3 },
+          },
+          overflow: "hidden",
+        }}
         TabIndicatorProps={{ style: { background: "#fbd020" } }}
       >
-        {data?.map((item) => {
+        {tabs?.map((item) => {
           return <Tab label={item?.title} sx={styles?.tabElements} />;
         })}
       </Tabs>
