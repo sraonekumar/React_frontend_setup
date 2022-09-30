@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "title": "Dashboard",
+      "selected": "false"
+    },
+    {
+      "title": "User's",
+      "selected": "false"
+    },
+    {
+      "title": "Role",
+      "selected": "false"
+    },
+    {
+      "title": "Industry",
+      "selected": "false"
+    },
+    {
+      "title": "Sub-Industry",
+      "selected": "false"
+    },
+    {
+      "title": "Company",
+      "selected": "false"
+    },
+    {
+      "title": "Entity",
+      "selected": "false"
+    },
+    {
+      "title": "Plant",
+      "selected": "false"
+    },
+    {
+      "title": "KPI's",
+      "selected": "false"
+    },
+    {
+      "title": "Categories",
+      "selected": "false"
+    },
+    {
+      "title": "Unit",
+      "selected": "false"
+    },
+    {
+      "title": "Unit Group",
+      "selected": "false"
+    },
+    {
+      "title": "Reference Library",
+      "selected": "false"
+    },
+    {
+      "title": "Agencies",
+      "selected": "false"
+    },
+    {
+      "title": "Reports",
+      "selected": "false"
+    }
+  ]
+}

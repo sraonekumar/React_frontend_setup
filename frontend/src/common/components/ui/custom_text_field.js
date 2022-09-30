@@ -57,7 +57,7 @@ export default function CustomTextField({
       sx={{
         input: {
           color: "#fff",
-          background: "black",
+          background: "#2e2e38",
         },
       }}
     />

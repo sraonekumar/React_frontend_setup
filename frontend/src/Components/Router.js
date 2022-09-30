@@ -2,31 +2,21 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Redirect from "./Redirect";
 import SignIn from "./SignIn";
-import Dashboard from "../Pages/Dashboard";
 import SignInSide from "./SignInSide";
-import ResponsiveSignIn from "./ResponsiveSignIn";
+import PersistentDrawerLeft from "./Dashboard";
 
 const router = [
   {
     path: "/",
-    element: <SignIn />,
-    //element: <Redirect />,
-  },
-  {
-    path: "/signin",
-    element: <SignIn />,
-  },
-  {
-    path: "/re-signin",
     element: <SignInSide />,
   },
   {
-    path: "/re-signin",
-    element: <ResponsiveSignIn />,
+    path: "/dashboard",
+    element: <PersistentDrawerLeft />,
   },
   {
-    path: "/dashboard",
-    element: <Dashboard />,
+    path: "/signin",
+    element: <SignInSide />,
   },
   {
     path: "*",
