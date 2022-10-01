@@ -29,7 +29,6 @@ export default function TabBar({ tabs = [], setParentTab }) {
       sx={{
         backgroundColor: "#f5f5f5b0",
         boxShadow: "0px 0px 2px 0px #a1a1a157",
-        overflow: "hidden",
       }}
     >
       <Tabs
