@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Redirect from "./Redirect";
 import SignIn from "./SignIn";
 import SignInSide from "./SignInSide";
-import PersistentDrawerLeft from "../Pages/Dashboard";
+import PersistentDrawerLeft from "../pages/Dashboard";
 
 const router = [
   {
