@@ -18,12 +18,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import ResponsiveAppBar from "./Header";
+import ResponsiveAppBar from "../Components/Header";
 import { Avatar, Container, Paper } from "@mui/material";
-import TabBar from "./TabBar";
+import TabBar from "../Components/TabBar";
 import logo from "../assets/logo.svg";
-import SideNav from "./SideNav";
+import SideNav from "../Components/SideNav";
 import tabs from "../Json/tabs.json";
+import SwitchComponent from "../Components/SwitchComponent";
 
 const drawerWidth = 100;
 
@@ -76,6 +77,7 @@ export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [allTabs, setAllTabs] = React.useState(tabs?.data);
+  const [parentTab, setParentTab] = React.useState({});
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -86,7 +88,13 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box
+      sx={{
+        display: "flex",
+        minHeight: "100vh",
+        color: "#000133",
+      }}
+    >
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -96,7 +104,7 @@ export default function PersistentDrawerLeft() {
         <ResponsiveAppBar
           open={open}
           handleDrawerOpen={handleDrawerOpen}
-          selectedTab={""}
+          selectedTab={parentTab?.title || ""}
         />
       </AppBar>
       <Drawer
@@ -119,11 +127,30 @@ export default function PersistentDrawerLeft() {
       <Main open={open} sx={{ padding: "20px 0px" }}>
         <div style={{ minHeight: "45px" }}></div>
         <Typography paragraph style={{ margin: "0px" }}>
-          <TabBar tabs={allTabs} />
+          <TabBar tabs={allTabs} setParentTab={setParentTab} />
         </Typography>
         <Box
-          sx={{ bgcolor: "#d3d5d7bd", minHeight: "480px", margin: "5px" }}
-        ></Box>
+          style={{
+            flex: 1,
+            height: "calc(100% - 120px)",
+            background: "#eeeeee",
+            color: "black",
+            padding: "10px 15px",
+          }}
+        >
+          <div style={{ height: "10px", margin: "10px 15px" }}>
+            <SwitchComponent component={parentTab} />
+          </div>
+        </Box>
+        <div
+          style={{
+            background: "#eeeeee",
+            height: "45px",
+            padding: "5px 10px",
+          }}
+        >
+          <Typography style={{ textAlign: "center" }}></Typography>
+        </div>
       </Main>
     </Box>
   );

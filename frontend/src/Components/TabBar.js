@@ -3,34 +3,7 @@ import Tab from "@mui/material/Tab";
 import Tabs, { tabsClasses } from "@mui/material/Tabs";
 import Box from "@mui/material/Box";
 
-const data = [
-  {
-    title: "Dashboard",
-    selected: "false",
-  },
-  {
-    title: "User's",
-    selected: "false",
-  },
-  {
-    title: "Role",
-    selected: "false",
-  },
-  {
-    title: "Industry",
-    selected: "false",
-  },
-  {
-    title: "Agencies",
-    selected: "false",
-  },
-  {
-    title: "Reports",
-    selected: "false",
-  },
-];
-
-export default function TabBar({ tabs = [] }) {
+export default function TabBar({ tabs = [], setParentTab }) {
   const [value, setValue] = React.useState(0);
 
   const styles = {
@@ -44,7 +17,12 @@ export default function TabBar({ tabs = [] }) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setParentTab(tabs[newValue]);
   };
+
+  React.useEffect(() => {
+    setParentTab(tabs[0]);
+  }, []);
 
   return (
     <Box
@@ -58,7 +36,7 @@ export default function TabBar({ tabs = [] }) {
         onChange={handleChange}
         variant="scrollable"
         sx={{
-          width: "1260px",
+          width: "92vw",
           [`& .${tabsClasses.scrollButtons}`]: {
             "&.Mui-disabled": { opacity: 0.3 },
           },
