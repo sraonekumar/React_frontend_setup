@@ -31,49 +31,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-];
-
-export default function CustomDataGrid() {
-  const headers = [
-    {
-      title: "Dessert (100g serving)",
-      sorting: false,
-    },
-    {
-      title: "Calories",
-      sorting: true,
-      direction: "asc",
-    },
-    {
-      title: "Fat (g)",
-      sorting: true,
-      direction: "asc",
-    },
-    {
-      title: "Carbs (g)",
-      sorting: true,
-      direction: "asc",
-    },
-    {
-      title: "Protein (g)",
-      sorting: false,
-    },
-  ];
+export default function CustomDataGrid({
+  headers = [],
+  rows = [],
+  title = "",
+}) {
   const [orientation, setOrientation] = React.useState(headers);
   const handleSort = (id) => {
     setOrientation(
@@ -84,6 +46,7 @@ export default function CustomDataGrid() {
       })
     );
   };
+
   return (
     <TableContainer
       component={Paper}
@@ -99,7 +62,7 @@ export default function CustomDataGrid() {
           <TableRow>
             {orientation?.map((item, i) => {
               return (
-                <StyledTableCell align={i > 0 ? "right" : ""}>
+                <StyledTableCell align={"left"}>
                   {item?.sorting ? (
                     <TableSortLabel
                       direction={item?.direction || ""}
@@ -124,15 +87,21 @@ export default function CustomDataGrid() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+          {rows.map((row, i) => (
+            <StyledTableRow
+              key={`${title}_${Math.floor(100000 + Math.random() * 900000)}`}
+            >
+              {Object.entries(row)?.map((subitem) => {
+                let [key, value] = subitem,
+                  intial = 0;
+                return intial++ === 0 ? (
+                  <StyledTableCell component="th" scope="row">
+                    {value}
+                  </StyledTableCell>
+                ) : (
+                  <StyledTableCell align="left">{value}</StyledTableCell>
+                );
+              })}
             </StyledTableRow>
           ))}
         </TableBody>
