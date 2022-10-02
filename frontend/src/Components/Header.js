@@ -48,12 +48,29 @@ const ResponsiveAppBar = ({ open, handleDrawerOpen, selectedTab = "" }) => {
         <MenuIcon />
       </IconButton>
       <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-        <Typography>{selectedTab}</Typography>
+        <Typography
+          sx={{
+            padding: "0px 10px",
+            fontSize: "18px",
+            fontWeight: "600",
+            color: "darkslategrey",
+          }}
+        >
+          {selectedTab}
+        </Typography>
       </Box>
 
       <Box sx={{ display: { xs: "none", sm: "block" } }}>
         {details.map((item) => (
-          <Button key={item} sx={{ color: "#000" }}>
+          <Button
+            key={item}
+            sx={{
+              padding: "0px 10px",
+              fontSize: "15px",
+              fontWeight: "600",
+              color: "darkslategrey",
+            }}
+          >
             {item}
           </Button>
         ))}
@@ -71,7 +88,14 @@ const ResponsiveAppBar = ({ open, handleDrawerOpen, selectedTab = "" }) => {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge
+            badgeContent={17}
+            sx={{
+              "& .MuiBadge-badge": {
+                backgroundColor: "yellow",
+              },
+            }}
+          >
             <NotificationsIcon />
           </Badge>
         </IconButton>
