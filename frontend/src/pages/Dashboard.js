@@ -25,6 +25,7 @@ import logo from "../assets/logo.svg";
 import SideNav from "../Components/SideNav";
 import tabs from "../Json/tabs.json";
 import SwitchComponent from "../Components/SwitchComponent";
+import Loader from "../Components/Loader";
 
 const drawerWidth = 100;
 
@@ -78,6 +79,7 @@ export default function PersistentDrawerLeft() {
   const [open, setOpen] = React.useState(true);
   const [allTabs, setAllTabs] = React.useState(tabs?.data);
   const [parentTab, setParentTab] = React.useState({});
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -124,6 +126,7 @@ export default function PersistentDrawerLeft() {
       >
         <SideNav handleDrawerClose={handleDrawerClose} />
       </Drawer>
+      {isLoading && <Loader />}
       <Main open={open} sx={{ padding: "20px 0px" }}>
         <div style={{ minHeight: "45px" }}></div>
         <Typography paragraph style={{ margin: "0px" }}>
@@ -132,7 +135,7 @@ export default function PersistentDrawerLeft() {
         <Box
           style={{
             flex: 1,
-            height: "calc(100% - 120px)",
+            height: "calc(100% - 115px)",
             background: "#eeeeee",
             color: "black",
             padding: "10px 15px",
@@ -145,7 +148,7 @@ export default function PersistentDrawerLeft() {
         <div
           style={{
             background: "#eeeeee",
-            height: "45px",
+            height: "40px",
             padding: "5px 10px",
           }}
         >
